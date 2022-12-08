@@ -1,0 +1,40 @@
+body {
+    background-color: #34286c;
+    color: rgb(44, 44, 44);
+    font-family: sans-serif;
+}
+
+.global {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    
+}
+
+.liste {
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.liste li {
+    list-style-type: none;
+    padding: 5px;
+    border-radius: 3px;
+    margin: 5px 0;
+}
+
+.liste li,
+.affichage {
+    background-color: aqua;
+
+}
+
+.affichage {
+    padding: 5px;
+    border-radius: 3px;
+    margin: 5px;
+    width: 70vw;
+    height: 70vh;
+}

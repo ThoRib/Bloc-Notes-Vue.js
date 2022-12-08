@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    </head>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+</html>
+
+<body>
+    
+    <div id="root"></div>
+
+</body>
+
+<script>
+
+var vm = new Vue({
+    el : "#root",
+    data : {
+        allListe : [
+            {
+            titre: "le titre un",
+            wTitre: false, 
+            texte: "le texte un",
+            wTexte: false
+            },
+            {
+            titre: "le titre deux",
+            wTitre: false, 
+            texte: "le texte deux",
+            wTexte: false
+            }
+        ],
+        texteActif : null
+    },
+    methods : {
+        affiche(i) {
+            this.texteActif = this.allListe[i].texte;
+        },
+        ecritTitre(i) {
+            this.allListe[i].wTitre = true;
+        },
+        saveTitle(i, event) {
+            if (event.key == 'Enter') {
+                this.allListe[i].titre = event.target.value;
+                this.allListe[i].wTitre = false;
+            };
+        }
+    },
+    template: 
+        `<div class="global">
+            <ul class="liste">
+                <li v-for="(oneListe, i) in allListe"
+                    v-on:click="affiche(i)"
+                    v-on:dblclick="ecritTitre(i)" >
+                    <span v-if="allListe[i].wTitre == false">{{ oneListe.titre }}</span>
+                    <input type="text" v-else v-bind:value="oneListe.titre" 
+                    v-on:keyup="saveTitle(i, $event)" />
+                </li>
+            </ul>
+            <div class="affichage">{{ texteActif }}</div>
+        </div>`
+});
+
+console.log(vm._data);
+
+</script>
