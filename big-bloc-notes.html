@@ -41,27 +41,43 @@ var vm = new Vue({
             this.allListe[i].wTitre = true;
         },
         saveTitle(i, event) {
-            if (event.key == 'Enter') {
+            if (event.key) {
                 this.allListe[i].titre = event.target.value;
-                this.allListe[i].wTitre = false;
+                if (event.key == 'Enter') {
+                    this.allListe[i].wTitre = false;
+                }
             };
+        },
+        ajoute() {
+            this.allListe.push({titre:"votre titre", wTitre:false, texte:"votre texte", wTexte: false});
+            
+        },
+        saveAll(event) {
+            // console.log(this.$refs.inputTitre);
+            this.allListe.forEach((element, i) => {
+                console.log(element.wTitre);
+                element.wTitre = false;
+            });
         }
     },
     template: 
-        `<div class="global">
-            <ul class="liste">
-                <li v-for="(oneListe, i) in allListe"
-                    v-on:click="affiche(i)"
-                    v-on:dblclick="ecritTitre(i)" >
-                    <span v-if="allListe[i].wTitre == false">{{ oneListe.titre }}</span>
-                    <input type="text" v-else v-bind:value="oneListe.titre" 
-                    v-on:keyup="saveTitle(i, $event)" />
-                </li>
-            </ul>
-            <div class="affichage">{{ texteActif }}</div>
+        `<div v-on:click="saveAll($event)" >
+            <button v-on:click="ajoute()">Ajouter une page</button>
+            <div class="global">
+                <ul class="liste">
+                    <li v-for="(oneListe, i) in allListe"
+                        v-on:click.stop="affiche(i)"
+                        v-on:dblclick.stop="ecritTitre(i, $event)" >
+                        <span v-if="allListe[i].wTitre == false">{{ oneListe.titre }}</span>
+                        <input type="text" v-else v-bind:value="oneListe.titre" 
+                        v-on:keyup="saveTitle(i, $event)" ref="inputTitre"/>
+                    </li>
+                </ul>
+                <div class="affichage">{{ texteActif }}</div>
+            </div>
         </div>`
 });
 
-console.log(vm._data);
+
 
 </script>
