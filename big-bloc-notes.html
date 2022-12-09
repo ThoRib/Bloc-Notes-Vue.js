@@ -34,7 +34,7 @@ var vm = new Vue({
         texteActif : null
     },
     methods : {
-        affiche(i) {
+        afficheNote(i) {
             this.texteActif = this.allListe[i].texte;
         },
         ecritTitre(i) {
@@ -61,23 +61,21 @@ var vm = new Vue({
         }
     },
     template: 
-        `<div v-on:click="saveAll($event)" >
-            <button v-on:click="ajoute()">Ajouter une page</button>
-            <div class="global">
-                <ul class="liste">
+        `<div v-on:click="saveAll($event)">
+            <div class="nav"><button v-on:click="ajoute()">Ajouter une page</button></div>
+            <div class="bloc">
+                <ul class="titles">
                     <li v-for="(oneListe, i) in allListe"
-                        v-on:click.stop="affiche(i)"
+                        v-on:click.stop="afficheNote(i)"
                         v-on:dblclick.stop="ecritTitre(i, $event)" >
                         <span v-if="allListe[i].wTitre == false">{{ oneListe.titre }}</span>
                         <input type="text" v-else v-bind:value="oneListe.titre" 
                         v-on:keyup="saveTitle(i, $event)" ref="inputTitre"/>
                     </li>
                 </ul>
-                <div class="affichage">{{ texteActif }}</div>
+                <div class="note">{{ texteActif }}</div>
             </div>
         </div>`
 });
-
-
 
 </script>

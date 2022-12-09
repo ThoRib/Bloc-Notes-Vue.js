@@ -4,34 +4,60 @@ body {
     font-family: sans-serif;
 }
 
-.global {
+.nav {
+    padding: 25px;
+    background-color: aqua;
+}
+
+.nav button {
+    background-color: #34286c;
+    border: none;
+    color: aqua;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.nav button:hover,
+.titles li:hover,
+.note:hover {
+    cursor: pointer
+}
+
+.bloc {
     display: flex;
     justify-content: center;
     padding: 15px;
-    
 }
 
-.liste {
+.titles {
+    /* flex-grow: 1; */
     padding: 0;
     margin: 0;
     display: inline-flex;
     flex-direction: column;
 }
 
-.liste li {
+.titles li {
+    width: 15vw;
     list-style-type: none;
     padding: 5px;
     border-radius: 3px;
-    margin: 5px 0;
+    margin: 5px;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
 }
 
-.liste li,
-.affichage {
+.titles input {
+    width: 15vw;
+}
+
+.titles li,
+.note {
     background-color: aqua;
-
 }
 
-.affichage {
+.note {
     padding: 5px;
     border-radius: 3px;
     margin: 5px;
